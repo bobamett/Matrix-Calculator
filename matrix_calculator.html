@@ -395,16 +395,16 @@
                 </div>
             </div>
             <nav class="nav-links">
-                <a href="#calculator">Kalkulator</a>
-                <a href="#about">Tentang</a>
-                <a href="#tutorial">Tutorial</a>
-                <a href="#contact">Kontak</a>
+                <a href="#" onclick="showSection('calculator'); return false;">Kalkulator</a>
+                <a href="#" onclick="showSection('about'); return false;">Tentang</a>
+                <a href="#" onclick="showSection('tutorial'); return false;">Tutorial</a>
+                <a href="#" onclick="showSection('contact'); return false;">Kontak</a>
             </nav>
         </div>
     </header>
 
     <!-- Main Content -->
-    <div class="main-wrapper">
+    <div class="main-wrapper" id="calculator">
         <div class="container">
         <h1>🔢 Kalkulator Matriks</h1>
 
@@ -484,8 +484,244 @@
             </div>
         </div>
 
-        <!-- Contact Section -->
-        <div id="contact" style="margin-top: 50px; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+        <!-- Tutorial Section -->
+        <div id="tutorial" style="margin-top: 50px; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <h2 style="color: #667eea; margin-bottom: 25px; font-size: 2em; text-align: center;">📚 Tutorial & Panduan</h2>
+            
+            <!-- Tutorial Tabs -->
+            <div style="margin-bottom: 30px;">
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; border-bottom: 2px solid #e0e0e0; padding-bottom: 15px;">
+                    <button class="tutorial-tab active" data-tab="penggunaan" style="padding: 12px 24px; border: 2px solid #667eea; background: #667eea; color: white; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
+                        🎯 Cara Penggunaan
+                    </button>
+                    <button class="tutorial-tab" data-tab="metode" style="padding: 12px 24px; border: 2px solid #667eea; background: white; color: #667eea; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
+                        🔢 Penjelasan Metode
+                    </button>
+                    <button class="tutorial-tab" data-tab="teori" style="padding: 12px 24px; border: 2px solid #667eea; background: white; color: #667eea; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
+                        📖 Teori Matriks
+                    </button>
+                    <button class="tutorial-tab" data-tab="contoh" style="padding: 12px 24px; border: 2px solid #667eea; background: white; color: #667eea; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
+                        ✏️ Contoh Soal
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Content: Cara Penggunaan -->
+            <div id="tab-penggunaan" class="tutorial-content" style="display: block;">
+                <h3 style="color: #667eea; margin-bottom: 20px;">🎯 Panduan Penggunaan Website</h3>
+                
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; border-left: 5px solid #667eea;">
+                        <h4 style="margin: 0 0 15px 0; color: #333;">1️⃣ Pilih Metode Perhitungan</h4>
+                        <p style="margin: 0; color: #666; line-height: 1.6;">Klik salah satu tombol metode di bagian atas kalkulator: <strong>Gauss Elimination</strong>, <strong>Gauss-Jordan</strong>, <strong>Cofactor Expansion</strong>, atau <strong>Inverse Matrix</strong>. Tombol yang aktif akan berwarna ungu.</p>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; border-left: 5px solid #667eea;">
+                        <h4 style="margin: 0 0 15px 0; color: #333;">2️⃣ Tentukan Ukuran Matriks</h4>
+                        <p style="margin: 0; color: #666; line-height: 1.6;">Masukkan jumlah baris dan kolom yang diinginkan (2×2 hingga 5×5), kemudian klik tombol <strong>"Buat Matriks"</strong>. Ukuran akan otomatis disesuaikan dengan metode yang dipilih.</p>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; border-left: 5px solid #667eea;">
+                        <h4 style="margin: 0 0 15px 0; color: #333;">3️⃣ Isi Nilai Matriks</h4>
+                        <p style="margin: 0; color: #666; line-height: 1.6;">Klik pada setiap kotak input dan masukkan angka. Anda juga bisa menggunakan tombol <strong>"Isi Acak"</strong> untuk mengisi matriks dengan angka acak untuk testing.</p>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; border-left: 5px solid #667eea;">
+                        <h4 style="margin: 0 0 15px 0; color: #333;">4️⃣ Hitung dan Lihat Hasil</h4>
+                        <p style="margin: 0; color: #666; line-height: 1.6;">Klik tombol <strong>"Hitung"</strong> untuk memproses. Hasil akan ditampilkan di bawah dengan langkah-langkah perhitungan yang detail. Gunakan tombol <strong>"Reset"</strong> untuk mengosongkan matriks.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Penjelasan Metode -->
+            <div id="tab-metode" class="tutorial-content" style="display: none;">
+                <h3 style="color: #667eea; margin-bottom: 20px;">🔢 Penjelasan Setiap Metode</h3>
+                
+                <div style="display: flex; flex-direction: column; gap: 25px;">
+                    <!-- Gauss Elimination -->
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 12px; color: white;">
+                        <h4 style="margin: 0 0 15px 0; font-size: 1.3em;">⚡ Gauss Elimination</h4>
+                        <p style="margin: 0 0 15px 0; line-height: 1.6;"><strong>Kapan Digunakan:</strong> Untuk menyelesaikan sistem persamaan linear (SPL) dengan bentuk Ax = b</p>
+                        <p style="margin: 0 0 15px 0; line-height: 1.6;"><strong>Cara Kerja:</strong></p>
+                        <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                            <li>Mengubah matriks menjadi bentuk eselon baris (segitiga atas)</li>
+                            <li>Melakukan eliminasi maju untuk membuat nol di bawah diagonal</li>
+                            <li>Menggunakan substitusi mundur untuk mendapatkan solusi</li>
+                        </ul>
+                        <p style="margin: 15px 0 0 0; line-height: 1.6;"><strong>Contoh Aplikasi:</strong> Menyelesaikan sistem 3 persamaan dengan 3 variabel</p>
+                    </div>
+
+                    <!-- Gauss-Jordan -->
+                    <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); padding: 30px; border-radius: 12px; color: white;">
+                        <h4 style="margin: 0 0 15px 0; font-size: 1.3em;">✨ Gauss-Jordan</h4>
+                        <p style="margin: 0 0 15px 0; line-height: 1.6;"><strong>Kapan Digunakan:</strong> Untuk mendapatkan solusi langsung tanpa substitusi mundur</p>
+                        <p style="margin: 0 0 15px 0; line-height: 1.6;"><strong>Cara Kerja:</strong></p>
+                        <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                            <li>Mengubah matriks menjadi bentuk eselon baris tereduksi (RREF)</li>
+                            <li>Setiap baris pivot dinormalisasi menjadi 1</li>
+                            <li>Membuat nol di atas DAN di bawah setiap pivot</li>
+                            <li>Solusi langsung terbaca dari kolom terakhir</li>
+                        </ul>
+                        <p style="margin: 15px 0 0 0; line-height: 1.6;"><strong>Perbedaan dengan Gauss:</strong> Lebih mudah membaca solusi, tapi memerlukan lebih banyak operasi</p>
+                    </div>
+
+                    <!-- Cofactor Expansion -->
+                    <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); padding: 30px; border-radius: 12px; color: white;">
+                        <h4 style="margin: 0 0 15px 0; font-size: 1.3em;">🎲 Cofactor Expansion</h4>
+                        <p style="margin: 0 0 15px 0; line-height: 1.6;"><strong>Kapan Digunakan:</strong> Untuk menghitung determinan matriks</p>
+                        <p style="margin: 0 0 15px 0; line-height: 1.6;"><strong>Cara Kerja:</strong></p>
+                        <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                            <li>Memilih satu baris atau kolom untuk ekspansi (biasanya baris pertama)</li>
+                            <li>Menghitung minor untuk setiap elemen</li>
+                            <li>Mengalikan dengan kofaktor (+/- bergantian)</li>
+                            <li>Menjumlahkan semua hasil perkalian</li>
+                        </ul>
+                        <p style="margin: 15px 0 0 0; line-height: 1.6;"><strong>Kegunaan Determinan:</strong> Mengecek apakah matriks memiliki invers, menghitung volume, dan lainnya</p>
+                    </div>
+
+                    <!-- Inverse Matrix -->
+                    <div style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%); padding: 30px; border-radius: 12px; color: white;">
+                        <h4 style="margin: 0 0 15px 0; font-size: 1.3em;">🔄 Inverse Matrix</h4>
+                        <p style="margin: 0 0 15px 0; line-height: 1.6;"><strong>Kapan Digunakan:</strong> Untuk mencari matriks kebalikan (A⁻¹)</p>
+                        <p style="margin: 0 0 15px 0; line-height: 1.6;"><strong>Cara Kerja:</strong></p>
+                        <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                            <li>Membentuk matriks augmented [A|I]</li>
+                            <li>Menggunakan operasi baris elementer (Gauss-Jordan)</li>
+                            <li>Mengubah bagian kiri menjadi matriks identitas</li>
+                            <li>Bagian kanan menjadi matriks invers A⁻¹</li>
+                        </ul>
+                        <p style="margin: 15px 0 0 0; line-height: 1.6;"><strong>Syarat:</strong> Matriks harus persegi dan determinan ≠ 0 (non-singular)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Teori Matriks -->
+            <div id="tab-teori" class="tutorial-content" style="display: none;">
+                <h3 style="color: #667eea; margin-bottom: 20px;">📖 Teori Dasar Matriks</h3>
+                
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 12px;">
+                        <h4 style="margin: 0 0 15px 0; color: #667eea;">🔷 Apa itu Matriks?</h4>
+                        <p style="margin: 0; color: #666; line-height: 1.8;">Matriks adalah susunan bilangan, simbol, atau ekspresi yang disusun dalam baris dan kolom berbentuk persegi panjang. Matriks dinotasikan dengan huruf kapital (A, B, C) dan elemen-elemennya ditulis dalam tanda kurung siku.</p>
+                    </div>
+
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 12px;">
+                        <h4 style="margin: 0 0 15px 0; color: #667eea;">📐 Jenis-Jenis Matriks</h4>
+                        <ul style="margin: 0; padding-left: 20px; color: #666; line-height: 1.8;">
+                            <li><strong>Matriks Persegi:</strong> Jumlah baris = jumlah kolom (n×n)</li>
+                            <li><strong>Matriks Identitas (I):</strong> Diagonal utama = 1, elemen lain = 0</li>
+                            <li><strong>Matriks Diagonal:</strong> Elemen di luar diagonal utama = 0</li>
+                            <li><strong>Matriks Singular:</strong> Determinan = 0 (tidak punya invers)</li>
+                            <li><strong>Matriks Non-Singular:</strong> Determinan ≠ 0 (punya invers)</li>
+                            <li><strong>Matriks Transpose (Aᵀ):</strong> Baris menjadi kolom, kolom menjadi baris</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 12px;">
+                        <h4 style="margin: 0 0 15px 0; color: #667eea;">🔢 Operasi Dasar Matriks</h4>
+                        <ul style="margin: 0; padding-left: 20px; color: #666; line-height: 1.8;">
+                            <li><strong>Penjumlahan/Pengurangan:</strong> Hanya bisa dilakukan jika ukuran sama</li>
+                            <li><strong>Perkalian Skalar:</strong> Setiap elemen dikalikan dengan bilangan</li>
+                            <li><strong>Perkalian Matriks:</strong> Kolom A = Baris B, hasil: (m×n)×(n×p) = (m×p)</li>
+                            <li><strong>Transpose:</strong> Menukar baris dengan kolom</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 12px;">
+                        <h4 style="margin: 0 0 15px 0; color: #667eea;">🎯 Determinan</h4>
+                        <p style="margin: 0 0 10px 0; color: #666; line-height: 1.8;">Determinan adalah nilai skalar yang dapat dihitung dari matriks persegi. Notasi: det(A) atau |A|</p>
+                        <p style="margin: 0; color: #666; line-height: 1.8;"><strong>Kegunaan:</strong></p>
+                        <ul style="margin: 10px 0 0 0; padding-left: 20px; color: #666; line-height: 1.8;">
+                            <li>Mengecek apakah matriks memiliki invers (det ≠ 0)</li>
+                            <li>Menyelesaikan sistem persamaan linear</li>
+                            <li>Menghitung luas/volume dalam geometri</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 12px;">
+                        <h4 style="margin: 0 0 15px 0; color: #667eea;">🔄 Invers Matriks</h4>
+                        <p style="margin: 0 0 10px 0; color: #666; line-height: 1.8;">Invers matriks A (ditulis A⁻¹) adalah matriks yang jika dikalikan dengan A menghasilkan matriks identitas: A × A⁻¹ = A⁻¹ × A = I</p>
+                        <p style="margin: 0; color: #666; line-height: 1.8;"><strong>Syarat memiliki invers:</strong></p>
+                        <ul style="margin: 10px 0 0 0; padding-left: 20px; color: #666; line-height: 1.8;">
+                            <li>Matriks harus persegi (n×n)</li>
+                            <li>Determinan tidak sama dengan nol (det(A) ≠ 0)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Contoh Soal -->
+            <div id="tab-contoh" class="tutorial-content" style="display: none;">
+                <h3 style="color: #667eea; margin-bottom: 20px;">✏️ Contoh Soal & Pembahasan</h3>
+                
+                <div style="display: flex; flex-direction: column; gap: 25px;">
+                    <!-- Contoh 1: Gauss Elimination -->
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; border: 2px solid #667eea;">
+                        <h4 style="margin: 0 0 15px 0; color: #667eea;">📝 Contoh 1: Gauss Elimination</h4>
+                        <p style="margin: 0 0 10px 0; color: #333; font-weight: 600;">Soal:</p>
+                        <p style="margin: 0 0 15px 0; color: #666; line-height: 1.6;">Selesaikan sistem persamaan berikut:</p>
+                        <pre style="background: white; padding: 15px; border-radius: 8px; overflow-x: auto; color: #333;">2x + y - z = 8
+-3x - y + 2z = -11
+-2x + y + 2z = -3</pre>
+                        <p style="margin: 15px 0 10px 0; color: #333; font-weight: 600;">Pembahasan:</p>
+                        <p style="margin: 0 0 10px 0; color: #666; line-height: 1.6;">1. Bentuk matriks augmented [A|b] ukuran 3×4</p>
+                        <p style="margin: 0 0 10px 0; color: #666; line-height: 1.6;">2. Masukkan koefisien: baris 1: [2, 1, -1, 8]</p>
+                        <p style="margin: 0 0 10px 0; color: #666; line-height: 1.6;">3. Pilih metode "Gauss Elimination"</p>
+                        <p style="margin: 0 0 10px 0; color: #666; line-height: 1.6;">4. Klik "Hitung" untuk melihat proses eliminasi</p>
+                        <p style="margin: 10px 0 0 0; color: #667eea; font-weight: 600;">Jawaban: x = 2, y = 3, z = -1</p>
+                    </div>
+
+                    <!-- Contoh 2: Determinan -->
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; border: 2px solid #4facfe;">
+                        <h4 style="margin: 0 0 15px 0; color: #4facfe;">📝 Contoh 2: Determinan (Cofactor)</h4>
+                        <p style="margin: 0 0 10px 0; color: #333; font-weight: 600;">Soal:</p>
+                        <p style="margin: 0 0 15px 0; color: #666; line-height: 1.6;">Hitung determinan matriks A:</p>
+                        <pre style="background: white; padding: 15px; border-radius: 8px; overflow-x: auto; color: #333;">A = [ 1   2   3 ]
+    [ 0   1   4 ]
+    [ 5   6   0 ]</pre>
+                        <p style="margin: 15px 0 10px 0; color: #333; font-weight: 600;">Pembahasan:</p>
+                        <p style="margin: 0 0 10px 0; color: #666; line-height: 1.6;">1. Buat matriks 3×3</p>
+                        <p style="margin: 0 0 10px 0; color: #666; line-height: 1.6;">2. Pilih metode "Cofactor Expansion"</p>
+                        <p style="margin: 0 0 10px 0; color: #666; line-height: 1.6;">3. Sistem akan melakukan ekspansi baris pertama</p>
+                        <p style="margin: 0 0 10px 0; color: #666; line-height: 1.6;">4. Perhatikan tanda (+/-) pada setiap cofactor</p>
+                        <p style="margin: 10px 0 0 0; color: #4facfe; font-weight: 600;">Jawaban: det(A) = 1</p>
+                    </div>
+
+                    <!-- Contoh 3: Inverse -->
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; border: 2px solid #ff6b6b;">
+                        <h4 style="margin: 0 0 15px 0; color: #ff6b6b;">📝 Contoh 3: Inverse Matrix</h4>
+                        <p style="margin: 0 0 10px 0; color: #333; font-weight: 600;">Soal:</p>
+                        <p style="margin: 0 0 15px 0; color: #666; line-height: 1.6;">Tentukan invers dari matriks B:</p>
+                        <pre style="background: white; padding: 15px; border-radius: 8px; overflow-x: auto; color: #333;">B = [ 4   7 ]
+    [ 2   6 ]</pre>
+                        <p style="margin: 15px 0 10px 0; color: #333; font-weight: 600;">Pembahasan:</p>
+                        <p style="margin: 0 0 10px 0; color: #666; line-height: 1.6;">1. Cek determinan: det(B) = 4×6 - 7×2 = 10 ≠ 0 ✓</p>
+                        <p style="margin: 0 0 10px 0; color: #666; line-height: 1.6;">2. Buat matriks 2×2 dengan nilai di atas</p>
+                        <p style="margin: 0 0 10px 0; color: #666; line-height: 1.6;">3. Pilih metode "Inverse Matrix"</p>
+                        <p style="margin: 0 0 10px 0; color: #666; line-height: 1.6;">4. Sistem akan membentuk [B|I] dan mengubahnya menjadi [I|B⁻¹]</p>
+                        <p style="margin: 10px 0 0 0; color: #ff6b6b; font-weight: 600;">Jawaban: Lihat hasil di kalkulator!</p>
+                    </div>
+
+                    <!-- Tips -->
+                    <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); padding: 25px; border-radius: 12px; color: white;">
+                        <h4 style="margin: 0 0 15px 0; font-size: 1.2em;">💡 Tips & Trik</h4>
+                        <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                            <li>Selalu periksa ukuran matriks sebelum memilih metode</li>
+                            <li>Untuk SPL, pastikan jumlah kolom = jumlah baris + 1</li>
+                            <li>Gunakan "Isi Acak" untuk eksplorasi dan latihan</li>
+                            <li>Perhatikan setiap langkah perhitungan untuk memahami prosesnya</li>
+                            <li>Jika determinan = 0, matriks tidak memiliki invers</li>
+                            <li>Verifikasi hasil dengan mengalikan A × A⁻¹ = I</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="main-wrapper" id="contact" style="display: none;">
+        <div class="container">
             <h2 style="color: #667eea; margin-bottom: 25px; font-size: 2em; text-align: center;">📞 Hubungi Kami</h2>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 40px;">
@@ -1065,6 +1301,50 @@
         }
 
         generateMatrix();
+
+        // Section Navigation
+        function showSection(sectionName) {
+            // Hide all sections
+            document.getElementById('calculator').style.display = 'none';
+            document.getElementById('tutorial').style.display = 'none';
+            document.getElementById('about').style.display = 'none';
+            document.getElementById('contact').style.display = 'none';
+
+            // Show selected section
+            document.getElementById(sectionName).style.display = 'block';
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Tutorial Tab Switching
+        document.addEventListener('DOMContentLoaded', function() {
+            const tutorialTabs = document.querySelectorAll('.tutorial-tab');
+            const tutorialContents = document.querySelectorAll('.tutorial-content');
+
+            tutorialTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tutorialTabs.forEach(t => {
+                        t.style.background = 'white';
+                        t.style.color = '#667eea';
+                    });
+
+                    // Add active class to clicked tab
+                    this.style.background = '#667eea';
+                    this.style.color = 'white';
+
+                    // Hide all content
+                    tutorialContents.forEach(content => {
+                        content.style.display = 'none';
+                    });
+
+                    // Show selected content
+                    const tabName = this.getAttribute('data-tab');
+                    document.getElementById('tab-' + tabName).style.display = 'block';
+                });
+            });
+        });
     </script>
 </body>
 </html>
