@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Matriks</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.5em;
+        }
+
+        .logo-text h2 {
+            margin: 0;
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            margin: 5px 0 0 0;
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 40px 0 20px 0;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: #667eea;
+            font-size: 1.2em;
+        }
+
+        .footer-section p {
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            opacity: 1;
+            color: #667eea;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(102, 126, 234, 0.2);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #667eea;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.8;
+        }
+
+        .main-wrapper {
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .method-selector {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .method-btn {
+            padding: 12px 24px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .method-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .method-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .size-selector {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .size-selector label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .size-selector input {
+            width: 60px;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .size-selector button {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .size-selector button:hover {
+            background: #5568d3;
+            transform: scale(1.05);
+        }
+
+        .matrix-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .matrix-wrapper {
+            text-align: center;
+        }
+
+        .matrix-wrapper h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .matrix {
+            display: inline-grid;
+            gap: 8px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 3px solid #667eea;
+        }
+
+        .matrix input {
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .matrix input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .result {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            margin-top: 20px;
+        }
+
+        .result h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .steps {
+            margin-top: 15px;
+        }
+
+        .step {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .matrix-display {
+            font-family: monospace;
+            white-space: pre;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 5px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">🔢</div>
+                <div class="logo-text">
+                    <h2>Matrix Calculator</h2>
+                    <p>Aljabar Linear Made Easy</p>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="#calculator">Kalkulator</a>
+                <a href="#about">Tentang</a>
+                <a href="#tutorial">Tutorial</a>
+                <a href="#contact">Kontak</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <div class="container">
+        <h1>🔢 Kalkulator Matriks</h1>
+
+        <div class="method-selector">
+            <button class="method-btn active" data-method="gauss">Gauss Elimination</button>
+            <button class="method-btn" data-method="gaussjordan">Gauss-Jordan</button>
+            <button class="method-btn" data-method="cofactor">Cofactor Expansion</button>
+            <button class="method-btn" data-method="inverse">Inverse Matrix</button>
+        </div>
+
+        <div class="size-selector">
+            <label>Ukuran Matriks:</label>
+            <input type="number" id="rows" value="3" min="2" max="5">
+            <span>×</span>
+            <input type="number" id="cols" value="3" min="2" max="5">
+            <button onclick="generateMatrix()">Buat Matriks</button>
+        </div>
+
+        <div class="matrix-container" id="matrixContainer"></div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="calculate()">Hitung</button>
+            <button class="btn btn-secondary" onclick="clearMatrix()">Reset</button>
+            <button class="btn btn-secondary" onclick="randomFill()">Isi Acak</button>
+        </div>
+
+        <div id="result"></div>
+
+        <!-- About Section -->
+        <div id="about" style="margin-top: 50px; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <h2 style="color: #667eea; margin-bottom: 25px; font-size: 2em; text-align: center;">📖 Tentang Kalkulator Matriks</h2>
+            
+            <div style="line-height: 1.8; color: #333; font-size: 1.05em;">
+                <p style="margin-bottom: 20px; text-align: justify;">
+                    Kalkulator Matriks ini dirancang untuk membantu pengguna melakukan perhitungan matriks dengan cepat, akurat, dan praktis tanpa perlu software tambahan. Website ini mendukung berbagai operasi dasar maupun lanjutan, seperti penjumlahan, pengurangan, perkalian matriks, determinan, invers, transpose, dan lain sebagainya.
+                </p>
+                
+                <p style="margin-bottom: 20px; text-align: justify;">
+                    Dengan antarmuka yang sederhana dan responsif, pengguna dapat langsung memasukkan ukuran serta nilai matriks untuk mendapatkan hasil dalam hitungan detik. Kalkulator ini cocok untuk pelajar, mahasiswa, peneliti, maupun profesional yang membutuhkan alat bantu komputasi matriks yang mudah digunakan.
+                </p>
+                
+                <p style="margin-bottom: 30px; text-align: justify;">
+                    Tujuan utama kami adalah menyediakan solusi perhitungan matriks yang efisien, mudah diakses, dan dapat digunakan di berbagai perangkat. Kami terus meningkatkan fitur agar dapat memenuhi kebutuhan pengguna dalam pembelajaran matematika, aljabar linier, dan pemrograman numerik.
+                </p>
+
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 12px; color: white;">
+                    <h3 style="margin-bottom: 20px; font-size: 1.5em; text-align: center;">👥 Tim Pengembang</h3>
+                    <p style="text-align: center; margin-bottom: 20px; font-weight: 600;">Mahasiswa Teknik Perkapalan UPN Veteran Jakarta</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 20px;">
+                        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; backdrop-filter: blur(10px);">
+                            <p style="margin: 0; font-weight: 600;">Rifki Andrian</p>
+                            <p style="margin: 5px 0 0 0; opacity: 0.9; font-size: 0.95em;">2210313004</p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; backdrop-filter: blur(10px);">
+                            <p style="margin: 0; font-weight: 600;">Anandita Fatihah</p>
+                            <p style="margin: 5px 0 0 0; opacity: 0.9; font-size: 0.95em;">2210313012</p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; backdrop-filter: blur(10px);">
+                            <p style="margin: 0; font-weight: 600;">Deva Natasya</p>
+                            <p style="margin: 5px 0 0 0; opacity: 0.9; font-size: 0.95em;">2210313020</p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; backdrop-filter: blur(10px);">
+                            <p style="margin: 0; font-weight: 600;">Colin Steven Aruan</p>
+                            <p style="margin: 5px 0 0 0; opacity: 0.9; font-size: 0.95em;">2210313026</p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; backdrop-filter: blur(10px);">
+                            <p style="margin: 0; font-weight: 600;">Muhammad Aljabbar</p>
+                            <p style="margin: 5px 0 0 0; opacity: 0.9; font-size: 0.95em;">2210313033</p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; backdrop-filter: blur(10px);">
+                            <p style="margin: 0; font-weight: 600;">Adam Rayhan</p>
+                            <p style="margin: 5px 0 0 0; opacity: 0.9; font-size: 0.95em;">2210313066</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="contact" style="margin-top: 50px; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <h2 style="color: #667eea; margin-bottom: 25px; font-size: 2em; text-align: center;">📞 Hubungi Kami</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 40px;">
+                <!-- Contact Info -->
+                <div>
+                    <h3 style="color: #667eea; margin-bottom: 20px;">📬 Informasi Kontak</h3>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; border-left: 5px solid #667eea;">
+                        <div style="margin-bottom: 20px;">
+                            <p style="margin: 0; font-weight: 600; color: #333; font-size: 1.1em;">👤 Admin</p>
+                            <p style="margin: 5px 0 0 0; color: #666;">Adam Rayhan</p>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <p style="margin: 0; font-weight: 600; color: #333; font-size: 1.1em;">📧 Email</p>
+                            <p style="margin: 5px 0 0 0; color: #666;">2210313066@mahasiswa.upnvj.ac.id</p>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <p style="margin: 0; font-weight: 600; color: #333; font-size: 1.1em;">🏫 Institusi</p>
+                            <p style="margin: 5px 0 0 0; color: #666;">UPN Veteran Jakarta</p>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <p style="margin: 0; font-weight: 600; color: #333; font-size: 1.1em;">🎓 Jurusan</p>
+                            <p style="margin: 5px 0 0 0; color: #666;">Teknik Perkapalan</p>
+                        </div>
+                        <div>
+                            <p style="margin: 0; font-weight: 600; color: #333; font-size: 1.1em;">📍 Alamat</p>
+                            <p style="margin: 5px 0 0 0; color: #666; line-height: 1.6;">Jl. Pd. Labu Raya, Pd. Labu, Kec. Cilandak, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12450</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div>
+                    <h3 style="color: #667eea; margin-bottom: 20px;">⚡ Quick Actions</h3>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <a href="mailto:2210313066@mahasiswa.upnvj.ac.id?subject=Laporan Bug - Matrix Calculator" style="text-decoration: none;">
+                            <div style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%); padding: 20px; border-radius: 12px; color: white; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255,107,107,0.3);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(255,107,107,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(255,107,107,0.3)'">
+                                <p style="margin: 0; font-size: 2em;">🐛</p>
+                                <p style="margin: 10px 0 5px 0; font-weight: 600; font-size: 1.1em;">Laporkan Bug</p>
+                                <p style="margin: 0; font-size: 0.9em; opacity: 0.9;">Temukan kesalahan? Laporkan ke kami</p>
+                            </div>
+                        </a>
+                        
+                        <a href="mailto:2210313066@mahasiswa.upnvj.ac.id?subject=Saran - Matrix Calculator" style="text-decoration: none;">
+                            <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); padding: 20px; border-radius: 12px; color: white; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(79,172,254,0.3);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(79,172,254,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(79,172,254,0.3)'">
+                                <p style="margin: 0; font-size: 2em;">💡</p>
+                                <p style="margin: 10px 0 5px 0; font-weight: 600; font-size: 1.1em;">Kirim Saran</p>
+                                <p style="margin: 0; font-size: 0.9em; opacity: 0.9;">Punya ide? Beritahu kami</p>
+                            </div>
+                        </a>
+                        
+                        <a href="mailto:2210313066@mahasiswa.upnvj.ac.id?subject=Pertanyaan - Matrix Calculator" style="text-decoration: none;">
+                            <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); padding: 20px; border-radius: 12px; color: white; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(250,112,154,0.3);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(250,112,154,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(250,112,154,0.3)'">
+                                <p style="margin: 0; font-size: 2em;">❓</p>
+                                <p style="margin: 10px 0 5px 0; font-weight: 600; font-size: 1.1em;">Tanya Jawab</p>
+                                <p style="margin: 0; font-size: 0.9em; opacity: 0.9;">Ada pertanyaan? Tanyakan pada kami</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map -->
+            <div style="margin-bottom: 40px;">
+                <h3 style="color: #667eea; margin-bottom: 20px;">🗺️ Lokasi Kampus</h3>
+                <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.3455802586596!2d106.79574257499498!3d-6.346428993632495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ee4a7ca0bb79%3A0x5b5a5d20f8c88c62!2sUniversitas%20Pembangunan%20Nasional%20Veteran%20Jakarta!5e0!3m2!1sid!2sid!4v1709876543210!5m2!1sid!2sid" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div>
+                <h3 style="color: #667eea; margin-bottom: 20px;">❔ FAQ (Pertanyaan yang Sering Diajukan)</h3>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; border-left: 5px solid #667eea;">
+                        <p style="margin: 0 0 10px 0; font-weight: 600; color: #333; font-size: 1.05em;">📧 Berapa lama waktu respon email?</p>
+                        <p style="margin: 0; color: #666; line-height: 1.6;">Kami berusaha merespon setiap email dalam waktu 1-2 hari kerja. Untuk pertanyaan mendesak, mohon sertakan "URGENT" di subjek email.</p>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; border-left: 5px solid #667eea;">
+                        <p style="margin: 0 0 10px 0; font-weight: 600; color: #333; font-size: 1.05em;">🐛 Bagaimana cara melaporkan bug?</p>
+                        <p style="margin: 0; color: #666; line-height: 1.6;">Klik tombol "Laporkan Bug" di atas atau kirim email dengan detail: langkah-langkah yang menyebabkan bug, screenshot (jika ada), dan browser yang digunakan.</p>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; border-left: 5px solid #667eea;">
+                        <p style="margin: 0 0 10px 0; font-weight: 600; color: #333; font-size: 1.05em;">💡 Apakah saran saya akan dipertimbangkan?</p>
+                        <p style="margin: 0; color: #666; line-height: 1.6;">Tentu! Kami sangat menghargai setiap masukan dan saran untuk pengembangan kalkulator ini. Setiap saran akan kami evaluasi untuk peningkatan fitur ke depannya.</p>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; border-left: 5px solid #667eea;">
+                        <p style="margin: 0 0 10px 0; font-weight: 600; color: #333; font-size: 1.05em;">🕐 Kapan jam operasional support?</p>
+                        <p style="margin: 0; color: #666; line-height: 1.6;">Email dapat dikirim kapan saja, namun kami aktif merespon pada hari Senin-Jumat pukul 09.00-17.00 WIB.</p>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; border-left: 5px solid #667eea;">
+                        <p style="margin: 0 0 10px 0; font-weight: 600; color: #333; font-size: 1.05em;">❓ Untuk apa saja saya bisa menghubungi?</p>
+                        <p style="margin: 0; color: #666; line-height: 1.6;">Anda dapat menghubungi kami untuk: melaporkan bug/error, memberikan saran fitur baru, bertanya tentang cara penggunaan, memberikan feedback, atau kolaborasi akademik.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        let currentMethod = 'gauss';
+        let rows = 3, cols = 3;
+
+        document.querySelectorAll('.method-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.method-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentMethod = this.dataset.method;
+                generateMatrix();
+            });
+        });
+
+        function generateMatrix() {
+            rows = parseInt(document.getElementById('rows').value);
+            cols = parseInt(document.getElementById('cols').value);
+            
+            if (currentMethod === 'gauss' || currentMethod === 'gaussjordan') {
+                cols = rows + 1;
+                document.getElementById('cols').value = cols;
+            } else if (currentMethod === 'cofactor' || currentMethod === 'inverse') {
+                cols = rows;
+                document.getElementById('cols').value = rows;
+            }
+
+            const container = document.getElementById('matrixContainer');
+            container.innerHTML = '';
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'matrix-wrapper';
+            
+            const title = document.createElement('h3');
+            if (currentMethod === 'gauss' || currentMethod === 'gaussjordan') {
+                title.textContent = 'Matriks Augmented [A|b]';
+            } else {
+                title.textContent = 'Matriks A';
+            }
+            wrapper.appendChild(title);
+
+            const matrix = document.createElement('div');
+            matrix.className = 'matrix';
+            matrix.id = 'matrixA';
+            matrix.style.gridTemplateColumns = `repeat(${cols}, 60px)`;
+
+            for (let i = 0; i < rows; i++) {
+                for (let j = 0; j < cols; j++) {
+                    const input = document.createElement('input');
+                    input.type = 'number';
+                    input.value = '0';
+                    input.step = 'any';
+                    matrix.appendChild(input);
+                }
+            }
+
+            wrapper.appendChild(matrix);
+            container.appendChild(wrapper);
+        }
+
+        function getMatrixValues() {
+            const inputs = document.querySelectorAll('#matrixA input');
+            const matrix = [];
+            for (let i = 0; i < rows; i++) {
+                matrix[i] = [];
+                for (let j = 0; j < cols; j++) {
+                    matrix[i][j] = parseFloat(inputs[i * cols + j].value) || 0;
+                }
+            }
+            return matrix;
+        }
+
+        function displayMatrix(matrix, decimals = 4) {
+            let str = '';
+            for (let i = 0; i < matrix.length; i++) {
+                str += '[ ';
+                for (let j = 0; j < matrix[i].length; j++) {
+                    const val = Math.abs(matrix[i][j]) < 1e-10 ? 0 : matrix[i][j];
+                    str += val.toFixed(decimals).padStart(10) + ' ';
+                }
+                str += ']\n';
+            }
+            return str;
+        }
+
+        function copyMatrix(matrix) {
+            return matrix.map(row => [...row]);
+        }
+
+        function gaussElimination(matrix) {
+            const m = copyMatrix(matrix);
+            const n = m.length;
+            const steps = [];
+
+            steps.push({
+                title: 'Matriks Awal',
+                matrix: copyMatrix(m)
+            });
+
+            for (let i = 0; i < n; i++) {
+                let maxRow = i;
+                for (let k = i + 1; k < n; k++) {
+                    if (Math.abs(m[k][i]) > Math.abs(m[maxRow][i])) {
+                        maxRow = k;
+                    }
+                }
+
+                if (maxRow !== i) {
+                    [m[i], m[maxRow]] = [m[maxRow], m[i]];
+                    steps.push({
+                        title: `Tukar Baris ${i+1} dengan Baris ${maxRow+1}`,
+                        matrix: copyMatrix(m)
+                    });
+                }
+
+                if (Math.abs(m[i][i]) < 1e-10) {
+                    continue;
+                }
+
+                for (let k = i + 1; k < n; k++) {
+                    const factor = m[k][i] / m[i][i];
+                    for (let j = i; j < m[k].length; j++) {
+                        m[k][j] -= factor * m[i][j];
+                    }
+                    steps.push({
+                        title: `Eliminasi Baris ${k+1} menggunakan Baris ${i+1} (faktor: ${factor.toFixed(4)})`,
+                        matrix: copyMatrix(m)
+                    });
+                }
+            }
+
+            const solution = new Array(n);
+            for (let i = n - 1; i >= 0; i--) {
+                solution[i] = m[i][n];
+                for (let j = i + 1; j < n; j++) {
+                    solution[i] -= m[i][j] * solution[j];
+                }
+                if (Math.abs(m[i][i]) > 1e-10) {
+                    solution[i] /= m[i][i];
+                }
+            }
+
+            return { steps, solution, finalMatrix: m };
+        }
+
+        function gaussJordan(matrix) {
+            const m = copyMatrix(matrix);
+            const n = m.length;
+            const steps = [];
+
+            steps.push({
+                title: 'Matriks Awal',
+                matrix: copyMatrix(m)
+            });
+
+            for (let i = 0; i < n; i++) {
+                let maxRow = i;
+                for (let k = i + 1; k < n; k++) {
+                    if (Math.abs(m[k][i]) > Math.abs(m[maxRow][i])) {
+                        maxRow = k;
+                    }
+                }
+
+                if (maxRow !== i) {
+                    [m[i], m[maxRow]] = [m[maxRow], m[i]];
+                    steps.push({
+                        title: `Tukar Baris ${i+1} dengan Baris ${maxRow+1}`,
+                        matrix: copyMatrix(m)
+                    });
+                }
+
+                if (Math.abs(m[i][i]) < 1e-10) {
+                    continue;
+                }
+
+                const pivot = m[i][i];
+                for (let j = 0; j < m[i].length; j++) {
+                    m[i][j] /= pivot;
+                }
+                steps.push({
+                    title: `Normalisasi Baris ${i+1} (bagi dengan ${pivot.toFixed(4)})`,
+                    matrix: copyMatrix(m)
+                });
+
+                for (let k = 0; k < n; k++) {
+                    if (k !== i) {
+                        const factor = m[k][i];
+                        for (let j = 0; j < m[k].length; j++) {
+                            m[k][j] -= factor * m[i][j];
+                        }
+                        if (Math.abs(factor) > 1e-10) {
+                            steps.push({
+                                title: `Eliminasi Baris ${k+1} menggunakan Baris ${i+1} (faktor: ${factor.toFixed(4)})`,
+                                matrix: copyMatrix(m)
+                            });
+                        }
+                    }
+                }
+            }
+
+            const solution = m.map(row => row[row.length - 1]);
+            return { steps, solution, finalMatrix: m };
+        }
+
+        function determinant(matrix) {
+            const n = matrix.length;
+            if (n === 1) return matrix[0][0];
+            if (n === 2) return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+
+            let det = 0;
+            for (let j = 0; j < n; j++) {
+                const minor = [];
+                for (let i = 1; i < n; i++) {
+                    const row = [];
+                    for (let k = 0; k < n; k++) {
+                        if (k !== j) row.push(matrix[i][k]);
+                    }
+                    minor.push(row);
+                }
+                det += Math.pow(-1, j) * matrix[0][j] * determinant(minor);
+            }
+            return det;
+        }
+
+        function cofactorExpansion(matrix) {
+            const n = matrix.length;
+            const steps = [];
+
+            steps.push({
+                title: 'Matriks Awal',
+                matrix: copyMatrix(matrix)
+            });
+
+            if (n === 2) {
+                const det = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+                steps.push({
+                    title: 'Perhitungan Determinan 2×2',
+                    description: `det = (${matrix[0][0]}) × (${matrix[1][1]}) - (${matrix[0][1]}) × (${matrix[1][0]}) = ${det.toFixed(4)}`
+                });
+                return { steps, determinant: det };
+            }
+
+            let det = 0;
+            const expansionDetails = [];
+
+            for (let j = 0; j < n; j++) {
+                const minor = [];
+                for (let i = 1; i < n; i++) {
+                    const row = [];
+                    for (let k = 0; k < n; k++) {
+                        if (k !== j) row.push(matrix[i][k]);
+                    }
+                    minor.push(row);
+                }
+
+                const minorDet = determinant(minor);
+                const cofactor = Math.pow(-1, j) * matrix[0][j] * minorDet;
+                det += cofactor;
+
+                expansionDetails.push(`Cofactor (0,${j}): ${Math.pow(-1, j) > 0 ? '+' : '-'}${matrix[0][j]} × ${minorDet.toFixed(4)} = ${cofactor.toFixed(4)}`);
+            }
+
+            steps.push({
+                title: 'Ekspansi Kofaktor Baris Pertama',
+                description: expansionDetails.join('\n')
+            });
+
+            steps.push({
+                title: 'Hasil Akhir',
+                description: `Determinan = ${det.toFixed(4)}`
+            });
+
+            return { steps, determinant: det };
+        }
+
+        function inverseMatrix(matrix) {
+            const n = matrix.length;
+            const steps = [];
+            const augmented = [];
+
+            for (let i = 0; i < n; i++) {
+                augmented[i] = [...matrix[i]];
+                for (let j = 0; j < n; j++) {
+                    augmented[i].push(i === j ? 1 : 0);
+                }
+            }
+
+            steps.push({
+                title: 'Matriks Augmented [A|I]',
+                matrix: copyMatrix(augmented)
+            });
+
+            const det = determinant(matrix);
+            if (Math.abs(det) < 1e-10) {
+                return { steps, error: 'Matriks singular (determinan = 0), tidak memiliki invers' };
+            }
+
+            for (let i = 0; i < n; i++) {
+                let maxRow = i;
+                for (let k = i + 1; k < n; k++) {
+                    if (Math.abs(augmented[k][i]) > Math.abs(augmented[maxRow][i])) {
+                        maxRow = k;
+                    }
+                }
+
+                if (maxRow !== i) {
+                    [augmented[i], augmented[maxRow]] = [augmented[maxRow], augmented[i]];
+                    steps.push({
+                        title: `Tukar Baris ${i+1} dengan Baris ${maxRow+1}`,
+                        matrix: copyMatrix(augmented)
+                    });
+                }
+
+                const pivot = augmented[i][i];
+                for (let j = 0; j < 2 * n; j++) {
+                    augmented[i][j] /= pivot;
+                }
+                steps.push({
+                    title: `Normalisasi Baris ${i+1}`,
+                    matrix: copyMatrix(augmented)
+                });
+
+                for (let k = 0; k < n; k++) {
+                    if (k !== i) {
+                        const factor = augmented[k][i];
+                        for (let j = 0; j < 2 * n; j++) {
+                            augmented[k][j] -= factor * augmented[i][j];
+                        }
+                        if (Math.abs(factor) > 1e-10) {
+                            steps.push({
+                                title: `Eliminasi Baris ${k+1}`,
+                                matrix: copyMatrix(augmented)
+                            });
+                        }
+                    }
+                }
+            }
+
+            const inverse = [];
+            for (let i = 0; i < n; i++) {
+                inverse[i] = augmented[i].slice(n);
+            }
+
+            return { steps, inverse, determinant: det };
+        }
+
+        function calculate() {
+            const matrix = getMatrixValues();
+            const resultDiv = document.getElementById('result');
+            
+            try {
+                let result;
+                switch (currentMethod) {
+                    case 'gauss':
+                        result = gaussElimination(matrix);
+                        displayGaussResult(result, resultDiv);
+                        break;
+                    case 'gaussjordan':
+                        result = gaussJordan(matrix);
+                        displayGaussJordanResult(result, resultDiv);
+                        break;
+                    case 'cofactor':
+                        result = cofactorExpansion(matrix);
+                        displayCofactorResult(result, resultDiv);
+                        break;
+                    case 'inverse':
+                        result = inverseMatrix(matrix);
+                        displayInverseResult(result, resultDiv);
+                        break;
+                }
+            } catch (e) {
+                resultDiv.innerHTML = `<div class="error">Error: ${e.message}</div>`;
+            }
+        }
+
+        function displayGaussResult(result, container) {
+            let html = '<div class="result"><h3>📊 Hasil Gauss Elimination</h3>';
+            html += '<div class="steps">';
+            
+            result.steps.forEach((step, idx) => {
+                html += `<div class="step">
+                    <div class="step-title">Langkah ${idx + 1}: ${step.title}</div>
+                    <div class="matrix-display">${displayMatrix(step.matrix)}</div>
+                </div>`;
+            });
+
+            html += '<div class="step"><div class="step-title">Solusi (Back Substitution):</div>';
+            result.solution.forEach((val, idx) => {
+                html += `<div>x${idx + 1} = ${val.toFixed(4)}</div>`;
+            });
+            html += '</div></div></div>';
+            
+            container.innerHTML = html;
+        }
+
+        function displayGaussJordanResult(result, container) {
+            let html = '<div class="result"><h3>📊 Hasil Gauss-Jordan</h3>';
+            html += '<div class="steps">';
+            
+            result.steps.forEach((step, idx) => {
+                html += `<div class="step">
+                    <div class="step-title">Langkah ${idx + 1}: ${step.title}</div>
+                    <div class="matrix-display">${displayMatrix(step.matrix)}</div>
+                </div>`;
+            });
+
+            html += '<div class="step"><div class="step-title">Solusi:</div>';
+            result.solution.forEach((val, idx) => {
+                html += `<div>x${idx + 1} = ${val.toFixed(4)}</div>`;
+            });
+            html += '</div></div></div>';
+            
+            container.innerHTML = html;
+        }
+
+        function displayCofactorResult(result, container) {
+            let html = '<div class="result"><h3>📊 Hasil Cofactor Expansion</h3>';
+            html += '<div class="steps">';
+            
+            result.steps.forEach((step, idx) => {
+                html += `<div class="step">
+                    <div class="step-title">${step.title}</div>`;
+                if (step.matrix) {
+                    html += `<div class="matrix-display">${displayMatrix(step.matrix)}</div>`;
+                }
+                if (step.description) {
+                    html += `<div style="white-space: pre-line; margin-top: 10px;">${step.description}</div>`;
+                }
+                html += '</div>';
+            });
+
+            html += '</div></div>';
+            container.innerHTML = html;
+        }
+
+        function displayInverseResult(result, container) {
+            if (result.error) {
+                container.innerHTML = `<div class="error">${result.error}</div>`;
+                return;
+            }
+
+            let html = '<div class="result"><h3>📊 Hasil Inverse Matrix</h3>';
+            html += `<div style="margin-bottom: 15px;"><strong>Determinan: ${result.determinant.toFixed(4)}</strong></div>`;
+            html += '<div class="steps">';
+            
+            result.steps.forEach((step, idx) => {
+                html += `<div class="step">
+                    <div class="step-title">Langkah ${idx + 1}: ${step.title}</div>
+                    <div class="matrix-display">${displayMatrix(step.matrix)}</div>
+                </div>`;
+            });
+
+            html += '<div class="step"><div class="step-title">Matriks Invers A⁻¹:</div>';
+            html += `<div class="matrix-display">${displayMatrix(result.inverse)}</div>`;
+            html += '</div></div></div>';
+            
+            container.innerHTML = html;
+        }
+
+        function clearMatrix() {
+            document.querySelectorAll('#matrixA input').forEach(input => input.value = '0');
+            document.getElementById('result').innerHTML = '';
+        }
+
+        function randomFill() {
+            document.querySelectorAll('#matrixA input').forEach(input => {
+                input.value = Math.floor(Math.random() * 20) - 10;
+            });
+        }
+
+        generateMatrix();
+    </script>
+</body>
+</html>
